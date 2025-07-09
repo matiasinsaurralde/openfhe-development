@@ -1,29 +1,19 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 ARG repository="openfhe-development"
 ARG branch=main
-ARG tag=v0.9.1
-ARG CC_param=/usr/bin/gcc-10
-ARG CXX_param=/usr/bin/g++-10
+ARG tag=v1.3.0
 ARG no_threads=1
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV CC $CC_param
-ENV CXX $CXX_param
 
 #install pre-requisites for OpenFHE
 RUN apt update && apt install -y git \
                                  build-essential \
-                                 gcc-10 \
-                                 g++-10 \
+                                 gcc \
+                                 g++ \
                                  cmake \
-                                 autoconf \
-                                 clang-10 \
-                                 libomp5 \
-                                 libomp-dev \
-                                 doxygen \
-                                 graphviz \
-                                 libboost-all-dev=1.71.0.0ubuntu2
+                                 libomp-dev
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
